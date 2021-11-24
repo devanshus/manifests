@@ -1,7 +1,7 @@
 apiVersion: apps/v1 #version we are using
 kind: Deployment # kind describe what purpose we are using this yaml file
 metadata: # It helps to identify the object 
-  name: banking # Identifier for this file
+  name: banking-app # Identifier for this file
   labels: # used to specify api
     app: banking-app
 spec: # specifications
@@ -16,17 +16,17 @@ spec: # specifications
     spec: 
       containers: # containers we have used
         - name: banking-app # name
-          image: devanshuz/bank # image which we got from docker hub
+          image: devanshuz/app1 # image which we got from docker hub
           ports: # ports that are used to provide output
-            - containerPort: 8095           
+            - containerPort: 8080           
           env:  # these are the variables we got from the image
-            - name: DB_HOSTNAME
-              value: "mysql"   # database we have choosen         
+            - name: DB_HOST
+              value: "bankmysql"   # database we have choosen         
             - name: DB_PORT # port number specified for mysql
               value: "3306"            
             - name: DB_NAME
               value: "onlinebanking" #name for the database           
-            - name: DB_USERNAME  
+            - name: DB_USER  
               value: "root"         #username for database    
-            - name: DB_PASSWORD
-              value: "dbpassword11" # password to enter database
+            - name: DB_PASS
+              value: "root" # password to enter database

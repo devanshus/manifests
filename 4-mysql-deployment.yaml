@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment #tells Kubernetes that this is a deployment 
 metadata:
-  name: mysql #sets the name as mysql
+  name: bankmysql #sets the name as mysql
 spec:  #giving specificaiton for replicaset
   replicas: 1 #one pod only
   selector: 
     matchLabels:
-      app: mysql  #label to refer to the replicaset
+      app: bankmysql  #label to refer to the replicaset
   strategy:
     type: Recreate #pod should get recreated after deletion
   template: #sets the pod template for replicaset
     metadata: 
       labels: 
-        app: mysql #binds the labels of pod to that of replicaset
+        app: bankmysql #binds the labels of pod to that of replicaset
     spec: #specification of the pod
       containers: 
-        - name: mysql #name of our container
-          image: mysql #image to be pulled
+        - name: bankmysql #name of our container
+          image: mysql:8 #image to be pulled
           env: #definining variable environments as specified on hub.docker.com
             - name: MYSQL_ROOT_PASSWORD #the name of environment value
-              value: dbpassword11 #the value we want to give to the variable
+              value: root #the value we want to give to the variable
           ports:
             - containerPort: 3306 #which port the application should run on
-              name: mysql    #with what name
+              name: bankmysql    #with what name
           volumeMounts: #virtual storage for the database
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql    #the default path to be set for container volume
