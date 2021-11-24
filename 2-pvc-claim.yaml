@@ -1,0 +1,11 @@
+apiVersion: v1 # gives version
+kind: PersistentVolumeClaim # describes what purpose we are using the yaml file
+metadata:
+  name: ebs-mysql-pv-claim # set name as ebs-mysql-pv-claim
+spec: 
+  accessModes:
+    - ReadWriteOnce # it indicates read and write by single node only
+  storageClassName: ebs-sc # describes the name
+  resources: 
+    requests: # how much storage we are requesting
+      storage: 4Gi # it indicates how muc storage we are requesting 

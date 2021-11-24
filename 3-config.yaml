@@ -1,0 +1,8 @@
+apiVersion: v1  #the version we are using
+kind: ConfigMap  #it tells k8s that this is a config file
+metadata:
+  name: banking-dbcreation-script  #this is the name given to the config file and this config file can be accessed with this name only 
+data: 
+  mysql_usermgmt.sql: |-
+    DROP DATABASE IF EXISTS onlinebanking;
+    CREATE DATABASE onlinebanking;

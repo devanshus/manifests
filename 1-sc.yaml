@@ -1,0 +1,6 @@
+apiVersion: storage.k8s.io/v1 #It describes the version of the API
+kind: StorageClass #kind describe what purpose we are using this yaml file
+metadata: 
+  name: ebs-sc # the name of the storage class
+provisioner: ebs.csi.aws.com #it describes where it is coming from i.e, it is coming from ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer #wait for first consumer to start

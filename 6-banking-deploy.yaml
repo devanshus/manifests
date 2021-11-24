@@ -1,0 +1,32 @@
+apiVersion: apps/v1 #version we are using
+kind: Deployment # kind describe what purpose we are using this yaml file
+metadata: # It helps to identify the object 
+  name: banking # Identifier for this file
+  labels: # used to specify api
+    app: banking-app
+spec: # specifications
+  replicas: 1  # define how many pods are created
+  selector: #selects all the pods with same key value pair 
+    matchLabels: # it helps to match with the labels
+      app: banking-app
+  template:  # this need to be applied for all the pods we have created
+    metadata:
+      labels: 
+        app: banking-app
+    spec: 
+      containers: # containers we have used
+        - name: banking-app # name
+          image: devanshuz/bank # image which we got from docker hub
+          ports: # ports that are used to provide output
+            - containerPort: 8095           
+          env:  # these are the variables we got from the image
+            - name: DB_HOSTNAME
+              value: "mysql"   # database we have choosen         
+            - name: DB_PORT # port number specified for mysql
+              value: "3306"            
+            - name: DB_NAME
+              value: "onlinebanking" #name for the database           
+            - name: DB_USERNAME  
+              value: "root"         #username for database    
+            - name: DB_PASSWORD
+              value: "dbpassword11" # password to enter database
